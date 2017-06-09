@@ -1,4 +1,4 @@
-angular.module('concertTrack', ['ngMaterial', 'ui.router'])
+angular.module('concertTrack', ['ui.router'])
 
 	.config(function($urlRouterProvider, $stateProvider) {
 
@@ -7,16 +7,16 @@ angular.module('concertTrack', ['ngMaterial', 'ui.router'])
 		$stateProvider
 			.state("home", {
 				url: "/",
-				template: '<div id="map">Hi</div>',
-				controller: function($scope, locations) {
+				templateUrl: "map.html",
+				controller: function($scope, locations, $state) {
 					console.log(locations);
 					$scope.concerts = locations;
 					var map = new window.google.maps.Map(document.getElementById('map'), {
 						center: {
-							lat: 32.7764163,
-							lng: -96.79760240000002
+							lat: 35,
+							lng: -35
 						},
-						zoom: 5
+						zoom: 3
 					})
 
 					$scope.concerts.forEach(function(concert) {
@@ -27,18 +27,30 @@ angular.module('concertTrack', ['ngMaterial', 'ui.router'])
 									lat: parseInt(concert.venue.latitude),
 									lng: parseInt(concert.venue.longitude)
 								},
-								map: map
+								map: map,
+								animation: google.maps.Animation.DROP
 							})
+							var date = moment(concert.datetime).format('MMMM Do YYYY, h:mm a');
 							var infoWindow = new window.google.maps.InfoWindow({
-								content: "<strong>Headline Act:</strong> " + concert.lineup[0] + '<br>' +
-											"<strong>Date:</strong> " + concert.datetime + '<br>' +
-											"<strong>Venue:</strong> " + concert.venue.name  + ' ' +
-											concert.venue.city + ', ' + concert.venue.region + "<br>" +
-											"<a target=_blank href=" + concert.url + ">Buy Tickets</a>"
+								content:
+									"<div style='text-align:center; margin-left:20px; font-family: Ubuntu;'><br><strong>Headline Act:</strong> " + concert.lineup[0] + '<br>' +
+									"<strong>Date:</strong> " + date + '<br>' +
+									"<strong>Venue:</strong> " + concert.venue.name + ' ' +
+									concert.venue.city + ', ' + concert.venue.region + "<br><br>" +
+									"<button class='waves-effect waves-light btn'> <a style='color:white' target=_blank href=" + concert.url + ">Buy Tickets</a></button>" + " " +
+									"<button id='artistInfobtn' ng-click=goToArtist(" + concert.lineup[0] + ") class='waves-effect waves-light btn'>View Artist Info</button></div><br>"
+							});
+							google.maps.event.addListener(infoWindow, 'domready', function() {
+							    document.getElementById("artistInfobtn").addEventListener("click", function(e) {
+							        $state.go("artistInfo", {artistName:concert.lineup[0]})
+							    });
 							});
 							marker.addListener('click', function() {
 								infoWindow.open(map, marker);
 							});
+							map.addListener('click', function() {
+								infoWindow.close(map, marker);
+							})
 						}
 					})
 
@@ -56,6 +68,11 @@ angular.module('concertTrack', ['ngMaterial', 'ui.router'])
 							})
 					}
 				}
+			})
+			.state("artistInfo", {
+				url: "/artist/:artistName" ,
+				templateUrl: "artist.html",
+				controller: "artistCtrl"
 			})
 
 	})
