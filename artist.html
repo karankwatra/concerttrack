@@ -1,1 +1,35 @@
-{{test}}
+<header>
+	<nav class="red lighten-1">
+		<div class="nav-wrapper">
+			<span class="md-toolbar-tools">ConcertTrack</span>
+			<form>
+				<div class="input-field">
+					<input ng-model="searchItem" my-enter="searchFunc(searchItem)" placeholder="Search for an Artist" id="search" type="search" required>
+					<label class="label-icon" for="search"><i class=" large material-icons">search</i></label>
+					<i class="material-icons">close</i>
+				</div>
+			</form>
+		</div>
+	</nav>
+</header>
+
+<div class="main-artist">
+
+
+	<div class="info-container">
+
+
+
+		<div class="row">
+			<div class="m11">
+				<div class="card-panel red lighten-1">
+					<h1 style="color:white">{{artistInfo.name}}</h1>
+					<img class="artist-image" ng-src="{{artistInfo.image[3]['#text']}}" alt="">
+					<span class="white-text" ng-bind-html="trustedContent"></span>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+</div>

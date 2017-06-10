@@ -1,6 +1,7 @@
 body{
 	margin: 0;
 	padding: 0;
+	background-color: #ffebee;
 }
 
 #map {
@@ -11,7 +12,7 @@ body{
 	position:absolute;
 	bottom:0;
 	right:0;
-	margin-top: 20px;
+
 }
 
 header{
@@ -19,8 +20,9 @@ header{
 	height: 8%;
 	display: flex;
 	align-items: center;
-	border-top: 2px solid #259b24;
+	border-top: 3px solid black;
 	z-index: 999;
+	margin-top: 0;
 }
 
 .md-toolbar-tools{
@@ -56,15 +58,44 @@ form{
 	height: 100%;
 }
 
-#slide-out{
-	height: 92%;
+.filter-nav{
+	height:92vh;
 	width: 20%;
-	position: relative;
-	bottom: 0;
+	position: absolute;
+	left:0;
+	top: 8%;
+
 }
 .input-field{
 	height: 100%;
 	margin: 0;
 	width: 80%;
 	float: right;
+}
+
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    white;
+}
+
+.main-artist{
+	margin-left: 5%;
+	margin-right: 5%;
+
+	height: 100%;
+}
+.main-artist h1{
+	text-align: center;
+}
+
+.artist-image{
+	border-radius: 25px;
+	margin-left: 5%;
+	margin-right: 5%;
+	float: right;
+}
+
+.info-container{
+	display: flex;
+	align-items: center;
+
 }
