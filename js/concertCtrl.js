@@ -56,7 +56,7 @@ angular.module('concertTrack')
 							concert.venue.name + '<br>' +
 							concert.venue.city + ', ' +
 							region + '<br><br>' +
-							"<button class='red lighten-1 waves-effect waves-light btn'> <a style='color:white' target=_blank href=" + concert.url + ">Buy Tickets</a></button>" + " " +
+							"<button id='buy-tickets' class='red lighten-1 waves-effect waves-light btn'> <a style='color:white' target=_blank href=" + concert.url + ">Buy Tickets</a></button>" + " " +
 							"<button id='artistInfobtn' ng-click=goToArtist(" + concert.lineup[0] + ") class=' red lighten-1 waves-effect waves-light btn'>View Artist Info</button></div><br>"
 					});
 					infoWindows.push(infoWindow)
@@ -70,7 +70,7 @@ angular.module('concertTrack')
 					marker.addListener('click', function() {
 						// console.log(markers);
 						for (var i = 0; i < markers.length; i++) {
-							console.log(map);
+							// console.log(map);
 							infoWindows[i].close(map, markers[i])
 						}
 						infoWindow.open(map, marker);
@@ -95,6 +95,10 @@ angular.module('concertTrack')
 			})
 
 		}
+		$(document).ready(function() {
+  			$('select').material_select();
+		});
+
 
 
 

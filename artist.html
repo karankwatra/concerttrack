@@ -3,8 +3,8 @@
 		<div class="nav-wrapper">
 			<span class="md-toolbar-tools">ConcertTrack</span>
 			<form>
-				<div class="input-field">
-					<input ng-model="searchItem" my-enter="searchFunc(searchItem)" placeholder="Search for an Artist" id="search" type="search" required>
+				<div class="input-field search-input-field">
+					<input ng-model="searchItem" my-enter="searchArtist(searchItem)" placeholder="Search for an Artist" id="search" type="search" required>
 					<label class="label-icon" for="search"><i class=" large material-icons">search</i></label>
 					<i class="material-icons">close</i>
 				</div>
@@ -13,23 +13,42 @@
 	</nav>
 </header>
 
-<div class="main-artist">
 
+<div class="col s12 m3">
+	<div class="card medium red lighten-1">
 
-	<div class="info-container">
+		<span><img class="artist-image" ng-src="{{artistInfo.image[3]['#text']}}" alt=""></span>
+		<div class="">
+			<h1 class="artist-title" style="color:white">{{artistInfo.name}}</h1>
+			<div ng-repeat="genre in genres" class="chip">{{genre.name}}</div><br />
+		</div>
 
+		<span style="font-size:16px" class="white-text" ng-bind-html="trustedContent"></span><br /><br /><br />
 
+		<span style="color:white; font-size: 16px">Next Performance: {{date}}, {{nextDate.venue.name}}, {{nextDate.venue.city}}, {{region}}</span>
+	</div>
+</div>
 
-		<div class="row">
-			<div class="m11">
-				<div class="card-panel red lighten-1">
-					<h1 style="color:white">{{artistInfo.name}}</h1>
-					<img class="artist-image" ng-src="{{artistInfo.image[3]['#text']}}" alt="">
-					<span class="white-text" ng-bind-html="trustedContent"></span>
+<div id="aritstInfo" class="similar-artist-container">
+	<h3>Similar Artists</h3>
+	<div ng-repeat="similarArtist in similarArtists" ng-click="searchArtist(similarArtist.name)">
+		<div  class="col s12 m7">
+			<div class="similar-card card horizontal">
+				<div class="card-image">
+					<img ng-src="{{similarArtist.image[2]['#text']}}">
+				</div>
+				<div class="card-stacked">
+					<div class="card-content" >
+						<h4>{{similarArtist.name}}</h4>
+					</div>
 				</div>
 			</div>
 		</div>
-
 	</div>
+</div>
 
+<div class="fixed-action-btn">
+  <a ui-sref="home" class="btn-floating btn-large red">
+	<i class="large material-icons rotate-180">trending_flat</i>
+  </a>
 </div>

@@ -64,9 +64,9 @@ form{
 	position: absolute;
 	left:0;
 	top: 8%;
-
+	padding-left: 20px;
 }
-.input-field{
+.search-input-field{
 	height: 100%;
 	margin: 0;
 	width: 80%;
@@ -77,25 +77,70 @@ form{
     color:    white;
 }
 
-.main-artist{
-	margin-left: 5%;
-	margin-right: 5%;
-
-	height: 100%;
-}
-.main-artist h1{
-	text-align: center;
-}
 
 .artist-image{
 	border-radius: 25px;
-	margin-left: 5%;
-	margin-right: 5%;
 	float: right;
+	margin-left: 20px;
+	margin-top: 2%;
 }
 
-.info-container{
-	display: flex;
-	align-items: center;
+.card{
+	margin: 20px;
+	padding: 20px;
+	font-family: 'Ubuntu', sans-serif;
+}
 
+.white-text a{
+	color: white;
+	text-decoration: underline;
+}
+
+
+.title-container{
+	display: flex;
+}
+
+.artist-title{
+	display: inline-block;
+	margin-right: 20px;
+}
+.chip{
+	display: inline-block;
+	vertical-align: middle;
+	margin-bottom: 20px;
+	background-color: white;
+}
+
+.similar-artist-container{
+	text-align: center;
+	color: #ef5350;
+}
+
+.similar-card{
+	margin-left: 30%;
+	margin-right: 30%;
+}
+
+.fixed-action-btn{
+	left: 23px;
+}
+
+.rotate-180 {
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+.nav-container{
+	padding-left: 20px;
+	padding-right: 20px;
+	color: #ef5350;
+	text-align: center;
+}
+
+.welcome-card{
+	background-color: #ef5350;
 }
