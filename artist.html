@@ -20,7 +20,7 @@
 		<span><img class="artist-image" ng-src="{{artistInfo.image[3]['#text']}}" alt=""></span>
 		<div class="">
 			<h1 class="artist-title" style="color:white">{{artistInfo.name}}</h1>
-			<div ng-repeat="genre in genres" class="chip">{{genre.name}}</div><br />
+			<div style="background-color:#26a69a; color: white" ng-repeat="genre in genres" class="chip">{{genre.name}}</div><br />
 		</div>
 
 		<span style="font-size:16px" class="white-text" ng-bind-html="trustedContent"></span><br /><br /><br />
@@ -48,7 +48,7 @@
 </div>
 
 <div class="fixed-action-btn">
-  <a ui-sref="home" class="btn-floating btn-large red">
+  <a ui-sref="home" class="btn-floating btn-large #26a69a">
 	<i class="large material-icons rotate-180">trending_flat</i>
   </a>
 </div>

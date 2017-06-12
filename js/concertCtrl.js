@@ -30,7 +30,8 @@ angular.module('concertTrack')
 							lng: parseFloat(concert.venue.longitude)
 						},
 						map: map,
-						animation: google.maps.Animation.DROP
+						animation: google.maps.Animation.DROP,
+						icon: 'marker.png'
 					})
 					markers.push(marker);
 					// console.log(markers);
@@ -56,8 +57,8 @@ angular.module('concertTrack')
 							concert.venue.name + '<br>' +
 							concert.venue.city + ', ' +
 							region + '<br><br>' +
-							"<button id='buy-tickets' class='red lighten-1 waves-effect waves-light btn'> <a style='color:white' target=_blank href=" + concert.url + ">Buy Tickets</a></button>" + " " +
-							"<button id='artistInfobtn' ng-click=goToArtist(" + concert.lineup[0] + ") class=' red lighten-1 waves-effect waves-light btn'>View Artist Info</button></div><br>"
+							"<button id='buy-tickets' class='#26a69a lighten-1 waves-effect waves-light btn'> <a style='color:white' target=_blank href=" + concert.url + ">Buy Tickets</a></button>" + " " +
+							"<button id='artistInfobtn' ng-click=goToArtist(" + concert.lineup[0] + ") class=' #26a69a lighten-1 waves-effect waves-light btn'>View Artist Info</button></div><br>"
 					});
 					infoWindows.push(infoWindow)
 					google.maps.event.addListener(infoWindow, 'domready', function() {
@@ -68,13 +69,10 @@ angular.module('concertTrack')
 						});
 					});
 					marker.addListener('click', function() {
-						// console.log(markers);
 						for (var i = 0; i < markers.length; i++) {
-							// console.log(map);
 							infoWindows[i].close(map, markers[i])
 						}
 						infoWindow.open(map, marker);
-
 					});
 					map.addListener('click', function() {
 						infoWindow.close(map, marker);
@@ -93,13 +91,41 @@ angular.module('concertTrack')
 				$scope.concerts = results;
 				mapConcerts();
 			})
-
 		}
+
 		$(document).ready(function() {
   			$('select').material_select();
+			$('.tooltipped').tooltip({delay: 50});
 		});
 
+		$scope.filterSearch = function(){
+			var top50 = concertService.getTop50();
+			var top50Dates = concertService.getTop50Dates();
+			var genresChosen = $scope.genresChosen;
+			var top50Info = concertService.getTop50Info();
+			var concerts = [];
+			//length shows as 0 but array is definitely not empty
+			console.log(top50Info.length);
+			for(var i = 0; i < top50Info.length; i++){
+				console.log(top50Info[i]);
+				for(j = 0; j < top50Info[i].tags.tag.length; j++){
+					if(genresChosen.includes(top50Info.tags.tag[j])){
+						concerts.push(top50Dates[i]);
+						break;
+					}
+				}
+			}
+			console.log(concerts);
+		}
 
-
-
+		setInterval(function(){
+			if($scope.searchItem){
+				$('#genre-dropdown').prop('disabled', true);
+				$('select').material_select();
+			}
+			else if($('#genre-dropdown').prop('disabled') && !$scope.searchItem){
+				$('#genre-dropdown').prop('disabled', false);
+				$('select').material_select();
+			}
+		}, 10);
 	})

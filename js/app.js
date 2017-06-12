@@ -1,4 +1,4 @@
-angular.module('concertTrack', ['ui.router'])
+angular.module('concertTrack', ['ui.router', 'ui.materialize'])
 
 	.config(function($urlRouterProvider, $stateProvider) {
 

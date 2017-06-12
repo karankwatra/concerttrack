@@ -15,7 +15,7 @@
 
 <ul id="slide-out" class="filter-nav side-nav fixed red lighten-5">
 	<div class="nav-container">
-		<div  class="row">
+		<div class="row">
 			<div class="col s12 m12">
 				<div class="card-panel welcome-card">
 					<span class="white-text"><strong>Welcome to ConcertTrack!</strong><br />
@@ -27,14 +27,37 @@
 		<h3>Filters</h3>
 
 		<div class="input-field col s12">
-  			<select multiple>
+			<select id="genre-dropdown" ng-model="genresChosen" material-select multiple watch>
 				<option value="" disabled selected>Genre</option>
-				<option value="1">Option 1</option>
-				<option value="2">Option 2</option>
-				<option value="3">Option 3</option>
+				<option value="alternative">Alternative</option>
+				<option value="children">Children</option>
+				<option value="christian">Christian</option>
+				<option value="Classical">Classical</option>
+				<option value="country">Country</option>
+				<option value="electronic">Electronic</option>
+				<option value="folk">Folk</option>
+				<option value="hip hop">Hip Hop</option>
+				<option value="jazz">Jazz</option>
+				<option value="latin">Latin</option>
+				<option value="metal">Metal</option>
+				<option value="pop">Pop</option>
+				<option value="rap">Rap</option>
+				<option value="rock">Rock</option>
+				<option value="rnb">R&B</option>
   			</select>
 		</div>
+
+		<label for="inputCreated">From</label>
+		<input input-date type="text" name="created" id="inputCreated" ng-model="currentTime" container="" format="mm/dd/yyyy" months-full="{{ month }}" months-short="{{ monthShort }}" weekdays-full="{{ weekdaysFull }}" weekdays-short="{{ weekdaysShort }}" weekdays-letter="{{ weekdaysLetter }}"
+		 disable="disable" min="{{ today }}" max="{{ maxDate }}" today="today" first-day="1" clear="clear" close="close" select-years="15" on-start="onStart()" on-render="onRender()" on-open="onOpen()" on-close="onClose()" on-set="onSet()" on-stop="onStop()"
+		/>
+
+		<button ng-click="filterSearch()" class="btn waves-effect waves-light" type="submit" name="action">Submit
+  			<i  class="material-icons right">send</i>
+		</button>
 </ul>
+
+
 
 
 <div id="map"></div>
