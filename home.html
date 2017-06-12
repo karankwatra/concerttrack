@@ -24,10 +24,11 @@
 				</div>
 			</div>
 		</div>
-		<h3>Filters</h3>
+		<h3 class="tooltipped" data-position="right" data-delay="50" data-tooltip="If you are looking for a specific artist please use the search bar.
+																					All filters work with the search bar with the exception of genre. ">Filters</h3>
 
 		<div class="input-field col s12">
-			<select id="genre-dropdown" ng-model="genresChosen" material-select multiple watch>
+			<select ng-disabled="searchItem" id="genre-dropdown" ng-model="genresChosen" material-select multiple watch>
 				<option value="" disabled selected>Genre</option>
 				<option value="alternative">Alternative</option>
 				<option value="children">Children</option>
@@ -47,10 +48,24 @@
   			</select>
 		</div>
 
+		<br /><h5 class="tooltipped" data-position="right" data-delay="50" data-tooltip="Only upcoming concert dates will be listed.">Dates</h5>
+
 		<label for="inputCreated">From</label>
-		<input input-date type="text" name="created" id="inputCreated" ng-model="currentTime" container="" format="mm/dd/yyyy" months-full="{{ month }}" months-short="{{ monthShort }}" weekdays-full="{{ weekdaysFull }}" weekdays-short="{{ weekdaysShort }}" weekdays-letter="{{ weekdaysLetter }}"
+		<input input-date type="text" name="created" id="inputCreated" ng-model="fromDate" container="" format="mm/dd/yyyy" months-full="{{ month }}" months-short="{{ monthShort }}" weekdays-full="{{ weekdaysFull }}" weekdays-short="{{ weekdaysShort }}" weekdays-letter="{{ weekdaysLetter }}"
 		 disable="disable" min="{{ today }}" max="{{ maxDate }}" today="today" first-day="1" clear="clear" close="close" select-years="15" on-start="onStart()" on-render="onRender()" on-open="onOpen()" on-close="onClose()" on-set="onSet()" on-stop="onStop()"
 		/>
+
+		<label for="inputCreated">To</label>
+		<input input-date type="text" name="created" id="inputCreated" ng-model="toDate" container="" format="mm/dd/yyyy" months-full="{{ month }}" months-short="{{ monthShort }}" weekdays-full="{{ weekdaysFull }}" weekdays-short="{{ weekdaysShort }}" weekdays-letter="{{ weekdaysLetter }}"
+		 disable="disable" min="{{ today }}" max="{{ maxDate }}" today="today" first-day="1" clear="clear" close="close" select-years="15" on-start="onStart()" on-render="onRender()" on-open="onOpen()" on-close="onClose()" on-set="onSet()" on-stop="onStop()"
+		/>
+
+		<br><br><h5 class="tooltipped" data-position="right" data-delay="50" data-tooltip="If searching by state please enter the two character abbreviation.">Location</h5>
+
+		<div class="location-field input-field col s6">
+          <input ng-model="location" id="location" type="text" class="validate">
+          <label for="location">Enter a city or state</label>
+	  	</div>
 
 		<button ng-click="filterSearch()" class="btn waves-effect waves-light" type="submit" name="action">Submit
   			<i  class="material-icons right">send</i>

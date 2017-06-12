@@ -21,6 +21,7 @@ angular.module('concertTrack')
 			}
 			markers = [];
 			infoWindows = [];
+			console.log($scope.concerts);
 			$scope.concerts.forEach(function(concert) {
 				if (concert && concert.venue && concert.venue.latitude) {
 					var marker = new window.google.maps.Marker({
@@ -89,43 +90,119 @@ angular.module('concertTrack')
 		$scope.searchFunc = function(searchItem) {
 			concertService.getArtistDates(searchItem).then(function(results) {
 				$scope.concerts = results;
-				mapConcerts();
+				if (results.length === 0) {
+					Materialize.toast(searchItem + " has no upcoming dates.", 3000)
+				} else {
+					mapConcerts();
+				}
+
 			})
 		}
 
-		$(document).ready(function() {
-  			$('select').material_select();
-			$('.tooltipped').tooltip({delay: 50});
+		angular.element(document).ready(function() {
+			$('.tooltipped').tooltip({
+				delay: 50
+			});
 		});
 
-		$scope.filterSearch = function(){
+		$scope.filterSearch = function() {
 			var top50 = concertService.getTop50();
-			var top50Dates = concertService.getTop50Dates();
+			var top50Dates;
+			var top50Info;
 			var genresChosen = $scope.genresChosen;
-			var top50Info = concertService.getTop50Info();
 			var concerts = [];
-			//length shows as 0 but array is definitely not empty
-			console.log(top50Info.length);
-			for(var i = 0; i < top50Info.length; i++){
-				console.log(top50Info[i]);
-				for(j = 0; j < top50Info[i].tags.tag.length; j++){
-					if(genresChosen.includes(top50Info.tags.tag[j])){
-						concerts.push(top50Dates[i]);
-						break;
+			if ($scope.searchItem) {
+				if ($scope.fromDate && $scope.toDate) {
+					if (moment($scope.fromDate, 'MM/DD/YYYY').isBefore(moment($scope.toDate, 'MM/DD/YYYY'))) {
+						concertService.getArtistDates($scope.searchItem).then(function(response) {
+							for (var concert of response) {
+								if (moment(concert.datetime).isBetween(moment($scope.fromDate, 'MM/DD/YYYY'), moment($scope.toDate, 'MM/DD/YYYY'))) {
+									if ($scope.location) {
+										if (concert.venue.city === $scope.location || concert.venue.region === $scope.location) {
+											concerts.push(concert);
+										}
+									} else {
+										concerts.push(concert);
+									}
+								}
+							}
+							if (concerts.length === 0) {
+								Materialize.toast("Could not find concerts for your request.", 3000)
+							} else {
+								$scope.concerts = concerts;
+								mapConcerts();
+							}
+
+						})
+					} else {
+						Materialize.toast("Please enter your dates correctly!", 3000)
 					}
+				} else if ($scope.location) {
+					concertService.getArtistDates($scope.searchItem).then(function(response) {
+						for (var concert of response) {
+							if (concert.venue.city === $scope.location || concert.venue.region === $scope.location) {
+								concerts.push(concert);
+							}
+						}
+						if (concerts.length === 0) {
+							Materialize.toast("Could not find concerts for your request.", 3000)
+						} else {
+							$scope.concerts = concerts;
+							mapConcerts();
+						}
+					})
 				}
+
+			} else {
+				concertService.getLocations().then(function(response) {
+					top50Dates = response;
+					concertService.calcTop50Info().then(function(response) {
+						top50Info = response;
+						if(genresChosen){
+							for (var i = 0; i < top50Info.length; i++) {
+								for (var j = 0; j < top50Info[i].artist.tags.tag.length; j++) {
+									if (genresChosen.includes(top50Info[i].artist.tags.tag[j].name)) {
+										concerts.push(top50Dates[i]);
+									}
+								}
+							}
+						}
+						else{
+							concerts = top50Dates;
+						}
+						if($scope.fromDate && $scope.toDate){
+							var new_concerts = [];
+							for(var concert of concerts){
+								console.log(concert);
+								if(concert){
+									if(moment(concert.datetime).isBetween(moment($scope.fromDate, 'MM/DD/YYYY'), moment($scope.toDate, 'MM/DD/YYYY'))){
+										new_concerts.push(concert)
+									}
+								}
+
+							}
+							concerts = new_concerts;
+						}
+						if($scope.location){
+							var new_concerts = [];
+							for(var concert of concerts){
+								if(concert){
+									if (concert.venue.city === $scope.location || concert.venue.region === $scope.location) {
+										new_concerts.push(concert);
+									}
+								}
+							}
+							concerts = new_concerts;
+						}
+
+						$scope.concerts = concerts;
+						mapConcerts();
+					});
+				});
+
 			}
-			console.log(concerts);
+
 		}
 
-		setInterval(function(){
-			if($scope.searchItem){
-				$('#genre-dropdown').prop('disabled', true);
-				$('select').material_select();
-			}
-			else if($('#genre-dropdown').prop('disabled') && !$scope.searchItem){
-				$('#genre-dropdown').prop('disabled', false);
-				$('select').material_select();
-			}
-		}, 10);
+
 	})

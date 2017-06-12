@@ -25,7 +25,7 @@
 
 		<span style="font-size:16px" class="white-text" ng-bind-html="trustedContent"></span><br /><br /><br />
 
-		<span style="color:white; font-size: 16px">Next Performance: {{date}}, {{nextDate.venue.name}}, {{nextDate.venue.city}}, {{region}}</span>
+		<span ng-if="date" style="color:white; font-size: 16px">Next Performance: {{date}}, {{nextDate.venue.name}}, {{nextDate.venue.city}}, {{region}}</span>
 	</div>
 </div>
 
