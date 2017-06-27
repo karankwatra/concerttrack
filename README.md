@@ -12,3 +12,4 @@ You can also find out more about the headline artist or buy tickets which links 
 
 
 The application was built using AngularJS and the MaterializeCSS frameworks. 
+APIs Used: Google Maps, Bands In Town, Last FM
