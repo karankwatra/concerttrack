@@ -5,8 +5,8 @@ angular.module('concertTrack')
 		setTimeout(function() {
 			map = new window.google.maps.Map(document.getElementById('map'), {
 				center: {
-					lat: 35,
-					lng: -35
+					lat: 42,
+					lng: -83
 				},
 				zoom: 3
 			})
@@ -87,6 +87,13 @@ angular.module('concertTrack')
 			mapConcerts();
 		})
 
+		$scope.triggerSideNav = function(){
+			$(".button-collapse").sideNav();
+		}
+		$scope.closeSideNav = function() {
+			$('.button-collapse').sideNav('hide');
+		}
+
 		$scope.searchFunc = function(searchItem) {
 			concertService.getArtistDates(searchItem).then(function(results) {
 				$scope.concerts = results;
@@ -106,6 +113,7 @@ angular.module('concertTrack')
 		});
 
 		$scope.filterSearch = function() {
+			$('.button-collapse').sideNav('hide');
 			var top50 = concertService.getTop50();
 			var top50Dates;
 			var top50Info;

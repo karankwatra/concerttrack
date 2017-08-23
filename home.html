@@ -1,8 +1,9 @@
+<title>Concert Track</title>
 <header>
-	<nav class="red lighten-1">
+	<!-- <nav class="red lighten-1">
 		<div class="nav-wrapper">
 			<span id="logo" class="brand-logo">ConcertTrack</span>
-			<img id="logo-img" class="brand-logo" src="./logo.JPG" alt="">
+			<img id="logo-img" class="brand-logo" src="./logo.JPG" alt="">	<a ng-click="triggerSideNav()" href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a></img>
 			<form>
 				<div class="input-field search-input-field" style="color:white">
 					<input ng-model="searchItem" my-enter="searchFunc(searchItem)" placeholder="Search for an Artist" id="search" type="search" required>
@@ -11,8 +12,88 @@
 				</div>
 			</form>
 		</div>
+	</nav> -->
+
+	<nav class="red lighten-1">
+		<div class="nav-wrapper">
+			<a href="#!" id="logo" class="brand-logo">ConcertTrack</a>
+			<img ng-click="triggerSideNav()" id="logo-img" class="brand-logo button-collapse" src="./logo.JPG" alt="" data-activates="mobile-demo">
+			<form>
+				<div class="input-field search-input-field" style="color:white">
+					<input ng-model="searchItem" my-enter="searchFunc(searchItem)" placeholder="Search for an Artist" id="search" type="search" required>
+					<label class="label-icon" for="search"><i class=" large material-icons">search</i></label>
+					<i class="material-icons">close</i>
+				</div>
+			</form>
+			<ul class="side-nav" id="mobile-demo">
+				<li><i class="material-icons side-nav-close" ng-click="closeSideNav()">close</i></li>
+
+				<!-- <ul id="slide-out" class="filter-nav side-nav fixed red lighten-5"> -->
+				<div class="nav-container">
+					<div class="row">
+						<div class="col s12 m12">
+							<div class="card-panel welcome-card">
+								<span class="white-text"><strong>Welcome to ConcertTrack!</strong><br />
+										The new, quick, and exciting way to find your favorite artists and where they're heading.
+					  				</span>
+							</div>
+						</div>
+					</div>
+					<h3 class="tooltipped" data-position="right" data-delay="50" data-tooltip="If you are looking for a specific artist please use the search bar.
+																									All filters work with the search bar with the exception of genre. ">Filters</h3>
+
+					<!-- <div class="input-field col s12"> -->
+					<select ng-disabled="searchItem" id="genre-dropdown" ng-model="genresChosen" material-select multiple watch>
+								<option value="" disabled selected>Genre</option>
+								<option value="alternative">Alternative</option>
+								<option value="children">Children</option>
+								<option value="christian">Christian</option>
+								<option value="Classical">Classical</option>
+								<option value="country">Country</option>
+								<option value="electronic">Electronic</option>
+								<option value="folk">Folk</option>
+								<option value="hip hop">Hip Hop</option>
+								<option value="jazz">Jazz</option>
+								<option value="latin">Latin</option>
+								<option value="metal">Metal</option>
+								<option value="pop">Pop</option>
+								<option value="rap">Rap</option>
+								<option value="rock">Rock</option>
+								<option value="rnb">R&B</option>
+				  			</select>
+					<!-- </div> -->
+
+					<br />
+					<h5 class="tooltipped" data-position="right" data-delay="50" data-tooltip="Only upcoming concert dates will be listed.">Dates</h5>
+
+					<label for="inputCreated">From</label>
+					<input input-date type="text" name="created" id="inputCreated" ng-model="fromDate" container="" format="mm/dd/yyyy" months-full="{{ month }}" months-short="{{ monthShort }}" weekdays-full="{{ weekdaysFull }}" weekdays-short="{{ weekdaysShort }}" weekdays-letter="{{ weekdaysLetter }}"
+					 disable="disable" min="{{ today }}" max="{{ maxDate }}" today="today" first-day="1" clear="clear" close="close" select-years="15" on-start="onStart()" on-render="onRender()" on-open="onOpen()" on-close="onClose()" on-set="onSet()" on-stop="onStop()"
+					/>
+
+					<label for="inputCreated">To</label>
+					<input input-date type="text" name="created" id="inputCreated" ng-model="toDate" container="" format="mm/dd/yyyy" months-full="{{ month }}" months-short="{{ monthShort }}" weekdays-full="{{ weekdaysFull }}" weekdays-short="{{ weekdaysShort }}" weekdays-letter="{{ weekdaysLetter }}"
+					 disable="disable" min="{{ today }}" max="{{ maxDate }}" today="today" first-day="1" clear="clear" close="close" select-years="15" on-start="onStart()" on-render="onRender()" on-open="onOpen()" on-close="onClose()" on-set="onSet()" on-stop="onStop()"
+					/>
+
+					<br><br>
+					<h5 class="tooltipped" data-position="right" data-delay="50" data-tooltip="If searching by state please enter the two character abbreviation.">Location</h5>
+
+					<input ng-model="location" id="location" type="text" class="validate">
+					<label for="location">Enter a city or state</label>
+
+					<br>
+					<button ng-click="filterSearch()" class="btn waves-effect waves-light" type="submit" name="action">Submit
+				  			<i  id="submit-icon" class="material-icons right">send</i>
+						</button>
+
+					<p style=" margin-top:70px; text-align:center">Created by Karan Kwatra</p>
+			</ul>
+			</div>
 	</nav>
 </header>
+
+
 
 <ul id="slide-out" class="filter-nav side-nav fixed red lighten-5">
 	<div class="nav-container">
@@ -49,7 +130,8 @@
   			</select>
 		</div>
 
-		<br /><h5 class="tooltipped" data-position="right" data-delay="50" data-tooltip="Only upcoming concert dates will be listed.">Dates</h5>
+		<br />
+		<h5 class="tooltipped" data-position="right" data-delay="50" data-tooltip="Only upcoming concert dates will be listed.">Dates</h5>
 
 		<label for="inputCreated">From</label>
 		<input input-date type="text" name="created" id="inputCreated" ng-model="fromDate" container="" format="mm/dd/yyyy" months-full="{{ month }}" months-short="{{ monthShort }}" weekdays-full="{{ weekdaysFull }}" weekdays-short="{{ weekdaysShort }}" weekdays-letter="{{ weekdaysLetter }}"
@@ -61,12 +143,11 @@
 		 disable="disable" min="{{ today }}" max="{{ maxDate }}" today="today" first-day="1" clear="clear" close="close" select-years="15" on-start="onStart()" on-render="onRender()" on-open="onOpen()" on-close="onClose()" on-set="onSet()" on-stop="onStop()"
 		/>
 
-		<br><br><h5 class="tooltipped" data-position="right" data-delay="50" data-tooltip="If searching by state please enter the two character abbreviation.">Location</h5>
+		<br><br>
+		<h5 class="tooltipped" data-position="right" data-delay="50" data-tooltip="If searching by state please enter the two character abbreviation.">Location</h5>
 
-		<div class="location-field input-field col s6">
-          <input ng-model="location" id="location" type="text" class="validate">
-          <label for="location">Enter a city or state</label>
-	  	</div>
+		<label for="location">Enter a city or state</label>
+		<input ng-model="location" id="location" type="text" class="validate">
 
 		<button ng-click="filterSearch()" class="btn waves-effect waves-light" type="submit" name="action">Submit
   			<i  class="material-icons right">send</i>
