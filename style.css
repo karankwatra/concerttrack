@@ -1,4 +1,4 @@
-body{
+body {
 	margin: 0;
 	padding: 0;
 	background-color: #ffebee;
@@ -9,13 +9,12 @@ body{
 	padding: 0;
 	width: 80%;
 	height: calc(100vh - 70px);
-	position:absolute;
-	bottom:0;
-	right:0;
-
+	position: absolute;
+	bottom: 0;
+	right: 0;
 }
 
-header{
+header {
 	justify-content: center;
 	height: 70px;
 	display: flex;
@@ -25,181 +24,238 @@ header{
 	margin-top: 0;
 }
 
-.md-toolbar-tools{
+.md-toolbar-tools {
 	height: 100%;
 	font-size: 35px;
-	width:20%;
-	position: absolute;
-	font-family: 'Ubuntu', sans-serif;
-	text-align: center;
-}
-nav{
-	height: 100%;
-
-}
-
-form{
-	margin: 0;
-}
-
-.material-icons{
-	height: 100%;
-	text-align: center;
-	align-items: center;
-}
-
-#search{
-	align-items: center;
-	margin: 0;
-	font-family: 'Ubuntu', sans-serif;
-}
-
-.nav-wrapper{
-	height: 100%;
-}
-
-
-.filter-nav{
-	height:calc(100vh - 70px);
 	width: 20%;
 	position: absolute;
-	left:0;
+	font-family: 'Ubuntu', sans-serif;
+	text-align: center;
+}
+
+nav {
+	height: 100%;
+}
+
+form {
+	margin: 0;
+}
+
+.material-icons {
+	height: 100%;
+	text-align: center;
+	align-items: center;
+}
+
+#search {
+	align-items: center;
+	margin: 0;
+	font-family: 'Ubuntu', sans-serif;
+}
+
+.nav-wrapper {
+	height: 100%;
+}
+
+.filter-nav {
+	height: calc(100vh - 70px);
+	width: 20%;
+	position: absolute;
+	left: 0;
 	top: 70px;
 	padding-left: 20px;
 }
-.search-input-field{
+
+.search-input-field {
 	height: 100%;
 	margin: 0;
 	width: 80%;
 	float: right;
 }
 
-::-webkit-input-placeholder { /* WebKit, Blink, Edge */
-    color:    white;
+::-webkit-input-placeholder {
+	/* WebKit, Blink, Edge */
+	color: white;
 }
 
-
-.artist-image{
+.artist-image {
 	border-radius: 25px;
 	float: right;
 	margin-left: 20px;
 	margin-top: 2%;
 }
 
-.card{
+.card {
 	margin: 20px;
 	padding: 20px;
 	font-family: 'Ubuntu', sans-serif;
 }
 
-.white-text a{
+.white-text a {
 	color: white;
 	text-decoration: underline;
 }
 
-.white-text{
+.white-text {
 	line-height: 24px;
 }
 
-
-.title-container{
+.title-container {
 	display: flex;
 }
 
-.artist-title{
+.artist-title {
 	display: inline-block;
 	margin-right: 20px;
 }
-.chip{
+
+.chip {
 	display: inline-block;
 	vertical-align: middle;
 	margin-bottom: 20px;
 	background-color: white;
 }
 
-.similar-artist-container{
+.similar-artist-container {
 	text-align: center;
 	color: #ef5350;
 }
 
-.similar-card{
+.similar-card {
 	margin-left: 30%;
 	margin-right: 30%;
 }
 
-.fixed-action-btn{
+.fixed-action-btn {
 	left: 23px;
 }
 
 .rotate-180 {
-    -webkit-transform: rotate(180deg);
-    -moz-transform: rotate(180deg);
-    -ms-transform: rotate(180deg);
-    -o-transform: rotate(180deg);
-    transform: rotate(180deg);
+	-webkit-transform: rotate(180deg);
+	-moz-transform: rotate(180deg);
+	-ms-transform: rotate(180deg);
+	-o-transform: rotate(180deg);
+	transform: rotate(180deg);
 }
 
-.nav-container{
+.nav-container {
 	padding-left: 20px;
 	padding-right: 20px;
 	color: #26a69a;
 	text-align: center;
 }
 
-.welcome-card{
+.welcome-card {
 	background-color: #ef5350;
 }
 
-.location-field input[type=text]:focus + label, .materialize-textarea:focus:not([readonly]) + label {
- color: #26a69a !important;
+.location-field input[type=text]:focus+label, .materialize-textarea:focus:not([readonly])+label {
+	color: #26a69a !important;
 }
+
 
 /* label underline focus color */
+
 input:not([type]).valid, input:not([type]):focus.valid, input[type=text].valid, input[type=text]:focus.valid, input[type=password].valid, input[type=password]:focus.valid, input[type=email].valid, input[type=email]:focus.valid, input[type=url].valid, input[type=url]:focus.valid, input[type=time].valid, input[type=time]:focus.valid, input[type=date].valid, input[type=date]:focus.valid, input[type=datetime].valid, input[type=datetime]:focus.valid, input[type=datetime-local].valid, input[type=datetime-local]:focus.valid, input[type=tel].valid, input[type=tel]:focus.valid, input[type=number].valid, input[type=number]:focus.valid, input[type=search].valid, input[type=search]:focus.valid, textarea.materialize-textarea.valid, textarea.materialize-textarea:focus.valid {
- border-bottom: 1px solid #26a69a !important;
- box-shadow: 0 1px 0 0 #26a69a !important;
+	border-bottom: 1px solid #26a69a !important;
+	box-shadow: 0 1px 0 0 #26a69a !important;
 }
 
-#submit-icon{
+#submit-icon {
 	line-height: 36px;
 }
 
-.material-tooltip { white-space: normal; }
+.material-tooltip {
+	white-space: normal;
+}
 
-.side-nav-close{
+.side-nav-close {
 	color: black;
 	text-align: right;
 	margin-right: 20px;
 }
 
-#logo{
+#logo {
 	margin-left: 30px;
 }
-#logo-img{
+
+#logo-img {
 	margin: 0;
 }
 
-@media only screen and (max-width: 992px){
+#artist-info{
+	padding-bottom: 70px;
+}
+
+#artist-card {
+	min-height: 400px;
+}
+
+[ng\:cloak], [ng-cloak], .ng-cloak {
+  display: none !important;
+}
+
+.ng-hide.ng-hide-animate {
+    display: none !important;
+}
+
+@media only screen and (max-width: 992px) {
 	#logo {
-	     left: 0;
-	     -webkit-transform: translateX(0);
-	     transform: translateX(0);
+		left: 0;
+		-webkit-transform: translateX(0);
+		transform: translateX(0);
 	}
 	#logo-img {
-		 left: 0;
-		 -webkit-transform: translateX(0);
-		 transform: translateX(0);
+		left: 0;
+		-webkit-transform: translateX(0);
+		transform: translateX(0);
 	}
 }
 
 @media (min-width: 993px) {
-    #logo-img {display:none}
-    #logo {display:inline-block}
+	#logo-img {
+		display: none
+	}
+	#logo {
+		display: inline-block
+	}
 }
 
 @media (max-width: 992px) {
-    #logo-img {display:inline-block; height: 65px;}
-    #logo {display:none}
-	.search-input-field{width: calc(100% - 65px)}
-	#map{width:100%; }
+	#logo-img {
+		display: inline-block;
+		height: 65px;
+	}
+	#logo {
+		display: none
+	}
+	.search-input-field {
+		width: calc(100% - 65px)
+	}
+	#map {
+		width: 100%;
+	}
+	.similar-card {
+		margin-left: 20px;
+		margin-right: 20px;
+	}
+	#artist-card {
+		text-align: center;
+		margin:0;
+	}
+	.artist-image {
+		float: none;
+		margin: 0;
+	}
+	.card{
+		border-radius: 0px;
+		box-shadow: none;
+	}
+
+}
+
+@media (max-width: 340px) {
+	.artist-image {
+		height: 260px;
+	}
 }

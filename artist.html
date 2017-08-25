@@ -1,8 +1,8 @@
 <header>
 	<nav class="red lighten-1">
 		<div class="nav-wrapper">
-			<span id="logo" class="brand-logo">ConcertTrack</span>
-			<img id="logo-img" class="brand-logo" src="./logo.JPG" alt="">
+			<span id="logo" class="brand-logo" ui-sref="home">ConcertTrack</span>
+			<img id="logo-img" class="brand-logo" src="./logo.JPG" ui-sref="home">
 			<form>
 				<div class="input-field search-input-field">
 					<input ng-model="searchItem" my-enter="searchArtist(searchItem)" placeholder="Search for an Artist" id="search" type="search" required>
@@ -15,22 +15,23 @@
 </header>
 
 
-<div class="col s12 m3">
-	<div class="card medium red lighten-1">
+<!-- <div class="col s12 m3"> -->
+	<div id="artist-card" class="card red lighten-1">
 
 		<span><img class="artist-image" ng-src="{{artistInfo.image[3]['#text']}}" alt=""></span>
 		<div class="">
-			<h1 class="artist-title" style="color:white">{{artistInfo.name}}</h1>
-			<div style="background-color:#26a69a; color: white" ng-repeat="genre in genres" class="chip">{{genre.name}}</div><br />
+			<h1 class="artist-title" style="color:white" ng-if="artistInfo.name">{{artistInfo.name}}</h1>
+			<!-- <h1 class="artist-title" style="color:white" ng-hide="artistInfo.name" ng-cloak>We could not find this artist!</h1> -->
 		</div>
+		<div style="background-color:#26a69a; color: white" ng-repeat="genre in genres" class="chip">{{genre.name}}</div><br />
 
 		<span style="font-size:16px" class="white-text" ng-bind-html="trustedContent"></span><br /><br /><br />
 
 		<span ng-if="date" style="color:white; font-size: 16px">Next Performance: {{date}}, {{nextDate.venue.name}}, {{nextDate.venue.city}}, {{region}}</span>
 	</div>
-</div>
+<!-- </div> -->
 
-<div id="aritstInfo" class="similar-artist-container">
+<div id="artist-info" class="similar-artist-container" ng-if="similarArtists.length>0">
 	<h3>Similar Artists</h3>
 	<div ng-repeat="similarArtist in similarArtists" ng-click="searchArtist(similarArtist.name)">
 		<div  class="col s12 m7">
